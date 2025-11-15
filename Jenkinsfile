@@ -3,8 +3,7 @@ pipeline {
 
     environment {
         EC2_SSH = 'ec2-ssh'
-        EC2_IP = "98.93.180.253"
-        S3_BUCKET = "kishan-site-artifacts"
+        EC2_IP  = "98.93.180.253"
     }
 
     stages {
@@ -29,27 +28,18 @@ pipeline {
                         def IMAGE = "${USER}/kishan-site:${BUILD_NUMBER}"
 
                         sh """
-                            echo $PASS | docker login -u $USER --password-stdin
+                            echo "$PASS" | docker login -u "$USER" --password-stdin
+
                             docker pull nginx:alpine || true
+
                             docker build -t ${IMAGE} .
+
                             docker push ${IMAGE}
                         """
+
+                        // Save IMAGE variable to use in next stage
+                        env.IMAGE = IMAGE
                     }
-                }
-            }
-        }
-
-        stage('Upload to S3') {
-            steps {
-                withCredentials([aws(credentialsId: 'aws-creds', accessKeyVariable: 'AWS_ACCESS_KEY', secretKeyVariable: 'AWS_SECRET_KEY')]) {
-                    sh """
-                        aws configure set aws_access_key_id $AWS_ACCESS_KEY
-                        aws configure set aws_secret_access_key $AWS_SECRET_KEY
-                        aws configure set region ap-south-1
-
-                        # upload files to S3
-                        aws s3 sync . s3://${S3_BUCKET}/build-${BUILD_NUMBER}/ --exclude "*" --include "*.html" --include "*.css" --include "*.js"
-                    """
                 }
             }
         }
