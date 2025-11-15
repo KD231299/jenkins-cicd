@@ -2,13 +2,12 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB = credentials('dockerhub-creds')
         EC2_SSH = 'ec2-ssh'
         EC2_IP = "98.93.180.253"
-        IMAGE = "${DOCKERHUB_USR}/kishan-site:${BUILD_NUMBER}"
     }
 
     stages {
+
         stage('Clone Repo') {
             steps {
                 checkout scm
@@ -17,30 +16,35 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t ${IMAGE} ."
-            }
-        }
+                script {
+                    withCredentials([usernamePassword(
+                        credentialsId: 'dockerhub-creds',
+                        usernameVariable: 'USER',
+                        passwordVariable: 'PASS'
+                    )]) {
 
-        stage('Push to DockerHub') {
-            steps {
-                sh """
-                    echo ${DOCKERHUB_PSW} | docker login -u ${DOCKERHUB_USR} --password-stdin
-                    docker push ${IMAGE}
-                """
+                        IMAGE = "${USER}/kishan-site:${BUILD_NUMBER}"
+
+                        sh """
+                            docker build -t ${IMAGE} .
+                            echo $PASS | docker login -u $USER --password-stdin
+                            docker push ${IMAGE}
+                        """
+                    }
+                }
             }
         }
 
         stage('Deploy to EC2') {
             steps {
-                sshagent([EC2_SSH]) {
+                sshagent(['ec2-ssh']) {
                     sh """
                         scp -o StrictHostKeyChecking=no deploy.sh ubuntu@${EC2_IP}:/home/ubuntu/
-                        ssh -o StrictHostKeyChecking=no ubuntu@${EC2_IP} 'chmod +x ~/deploy.sh'
-                        ssh -o StrictHostKeyChecking=no ubuntu@${EC2_IP} '~/deploy.sh ${IMAGE}'
+                        ssh -o StrictHostKeyChecking=no ubuntu@${EC2_IP} "chmod +x ~/deploy.sh"
+                        ssh -o StrictHostKeyChecking=no ubuntu@${EC2_IP} "~/deploy.sh ${IMAGE}"
                     """
                 }
             }
         }
     }
 }
-
