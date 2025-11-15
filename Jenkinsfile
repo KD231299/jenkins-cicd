@@ -26,7 +26,7 @@ pipeline {
                         )
                     ]) {
 
-                        IMAGE = "${USER}/kishan-site:${BUILD_NUMBER}"
+                        def IMAGE = "${USER}/kishan-site:${BUILD_NUMBER}"
 
                         sh """
                             echo $PASS | docker login -u $USER --password-stdin
