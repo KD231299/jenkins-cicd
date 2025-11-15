@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         EC2_SSH = 'ec2-ssh'
-        EC2_IP = "98.93.180.253"
+        EC2_IP  = "98.93.180.253"
     }
 
     stages {
@@ -17,19 +17,28 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    withCredentials([usernamePassword(
-                        credentialsId: 'dockerhub-creds',
-                        usernameVariable: 'USER',
-                        passwordVariable: 'PASS'
-                    )]) {
+                    withCredentials([
+                        usernamePassword(
+                            credentialsId: 'dockerhub-creds',
+                            usernameVariable: 'USER',
+                            passwordVariable: 'PASS'
+                        )
+                    ]) {
 
-                        IMAGE = "${USER}/kishan-site:${BUILD_NUMBER}"
+                        def IMAGE = "${USER}/kishan-site:${BUILD_NUMBER}"
 
                         sh """
+                            echo "$PASS" | docker login -u "$USER" --password-stdin
+
+                            docker pull nginx:alpine || true
+
                             docker build -t ${IMAGE} .
-                            echo $PASS | docker login -u $USER --password-stdin
+
                             docker push ${IMAGE}
                         """
+
+                        // Save IMAGE variable to use in next stage
+                        env.IMAGE = IMAGE
                     }
                 }
             }
