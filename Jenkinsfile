@@ -6,6 +6,10 @@ pipeline {
         EC2_IP  = "3.239.11.104"
     }
 
+    triggers {
+        githubPush()   // IMPORTANT: enables webhook auto trigger
+    }
+
     stages {
 
         stage('Clone Repo') {
