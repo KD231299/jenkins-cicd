@@ -1,47 +1,155 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kishan Dave | DevOps CI/CD Demo</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kishankumar Dave — Portfolio</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <header>
-    <h1>🚀 DAVE KISHANKUMAR GAURANGBHAI</h1>
-    <p>DevOps Engineer | CI/CD Enthusiast | Cloud Learner</p>
+  <header class="site-header">
+    <div class="container header-inner">
+
+      <div class="brand">
+        <div>
+          <h1>Kishankumar G. Dave</h1>
+          <p class="muted">DevOps & Cloud • CI/CD • Docker • AWS</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+    </div>
   </header>
 
-  <main>
-    <section id="about">
-      <h2>About Me</h2>
+  <main class="container">
+
+    <!-- ABOUT -->
+    <section id="about" class="card">
+      <h2>ℹ️ About</h2>
       <p>
-        I am passionate about automating deployments and building scalable systems.
-        This static site is deployed through a full CI/CD pipeline using Jenkins / GitHub Actions.
+        I am a highly motivated BCA student with a strong foundation in cloud infrastructure,
+        automation, DevOps practices, and CI/CD pipelines. I enjoy building scalable systems,
+        containerized deployments, and automating end-to-end delivery workflows.
       </p>
+
+      <div class="quick">
+        <div><strong>Location</strong><br />Naroda, Ahmedabad</div>
+        <div><strong>Email</strong><br /><a href="mailto:kishan.g.dave@gmail.com">kishan.g.dave@gmail.com</a></div>
+        <div><strong>Phone</strong><br />+91 8490898934</div>
+      </div>
     </section>
 
-    <section id="projects">
-      <h2>CI/CD Pipeline Projects</h2>
-      <ul>
-        <li>✅ Static Website Deployment with Jenkins</li>
-        <li>✅ Dockerized Node App with CI/CD</li>
-        <li>✅ AWS S3 + GitHub Actions Auto Deployment</li>
-         <li>✅ AWS EC2 + Docker and Kube Auto Deployment</li>
+    <!-- PROJECTS -->
+    <section id="projects" class="card">
+      <h2>🚧 Projects Experience (DevOps)</h2>
+
+      <article class="project">
+        <h3>CI/CD Pipeline with Jenkins, Docker & AWS</h3>
+        <p>
+          Automated CI/CD pipeline triggered via GitHub webhooks. Jenkins builds a Docker image,
+          pushes to Docker Hub, and deploys containers on an EC2 instance using SSH and scripted automation.
+        </p>
+        <p class="meta"><strong>Tech:</strong> Jenkins • Docker • GitHub • AWS EC2</p>
+      </article>
+
+      <article class="project">
+        <h3>GitHub Actions CI/CD</h3>
+        <p>
+          Implemented automated workflows to build and deploy applications to AWS EC2 and S3.
+          Managed environment secrets and multi-stage deployment steps.
+        </p>
+        <p class="meta"><strong>Tech:</strong> GitHub Actions • AWS EC2 • S3</p>
+      </article>
+
+      <article class="project">
+        <h3>Kubernetes Deployment</h3>
+        <p>
+          Containerized a web app and deployed it on Kubernetes (EKS). Implemented HPA,
+          services, Ingress, and monitoring stack (Prometheus/Grafana).
+        </p>
+        <p class="meta"><strong>Tech:</strong> Kubernetes • Docker • EKS • Prometheus</p>
+      </article>
+
+       <h2>🚧 Other Projects (College Project)</h2>
+
+
+      <article class="project">
+      <h3>Electronics E-Commerce Website</h3>
+      <p>
+        Built a full-stack e-commerce website for selling electronic items. Implemented features like user login/signup, product listing, cart, order history, and admin dashboard. Used NEXT JS for frontend with routing and state management. Backend APIs built with Express and data stored
+        using MySQL and Prisma ORM.
+
+      </p>
+      <p class="meta"><strong>Tech:</strong> React.js • Node.js • Express.js • MySQL • Prisma</p>
+    </article>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="card">
+      <h2>🧰 Skills</h2>
+      <ul class="skills-grid">
+        <li>Programming Languages: HTML, CSS, JavaScript, etc.</li>
+        <li>Frameworks: Next.js, React.js, Node.js</li>
+        <li>OS: Linux (Ubuntu), Windows</li>
+        <li>Version Control: Git</li>
+        <li>Containers & Orchestration: Kubernetes, Docker</li>
+        <li>IaC & Automation: Terraform, Ansible, Shell Scripting</li>
+        <li>CI/CD: Jenkins, GitHub Actions</li>
+        <li>Cloud Platform: AWS</li>
       </ul>
     </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:kishan.g.dave@gmail.com">kishan.g.dave@gmail.com</a></p>
-      <p>GitHub: <a href="https://github.com/KD231299" target="_blank">@your-github-username</a></p>
+    <!-- EDUCATION -->
+    <section id="education" class="card">
+      <h2>🎓 Education</h2>
+
+      <div class="edu">
+        <strong>Bachelor of Computer Applications (BCA)</strong><br />
+        Manipal University Jaipur (Distance Learning), 2022 – 2025
+      </div>
+
+      <div class="edu muted">
+        <strong>Earlier:</strong> Bachelor of Engineering in Automobiles —
+        Government Engineering College, Modasa (2017–2019, discontinued)
+      </div>
     </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="card">
+      <h2>📬 Contact</h2>
+      <p>Interested in hiring or collaborating? Let's connect:</p>
+
+      <ul class="contact-list">
+        <li>Email: <a href="mailto:kishan.g.dave@gmail.com">kishan.g.dave@gmail.com</a></li>
+        <li>Phone: +91 8490898934</li>
+        <li>LinkedIn: <a href="https://linkedin.com/in/kishankumar-dave-032a2626a" target="_blank"
+            rel="noopener">linkedin.com/in/KISHANKUMAR DAVE</a></li>
+      </ul>
+
+      <div class="cta">
+        <a class="btn" href="Kishan_Dave_Resume.pdf" download>Download Resume (PDF)</a>
+        <button id="themeToggle" class="btn outline">Toggle Theme</button>
+      </div>
+    </section>
+
   </main>
 
-  <footer>
-    <p>© 2025 Kishan Dave</p>
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> Kishankumar G. Dave • Built with HTML/CSS/JS</small>
+    </div>
   </footer>
 
   <script src="script.js"></script>
 </body>
+
 </html>
