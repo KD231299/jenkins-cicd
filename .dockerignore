@@ -1,0 +1,16 @@
+.git
+.gitignore
+.github
+.vscode
+README.md
+*.log
+*.pdf
+*.zip
+*.tar
+*.gz
+node_modules
+jenkins
+workspace
+Dockerfile
+Jenkinsfile
+
