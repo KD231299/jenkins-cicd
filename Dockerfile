@@ -1,5 +1,9 @@
 FROM nginx:alpine
-COPY index.html /usr/share/nginx/html/
-COPY style.css /usr/share/nginx/html/
-COPY script.js /usr/share/nginx/html/
+
+# Remove default nginx files
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy EVERYTHING from project directory
+COPY . /usr/share/nginx/html/
+
 EXPOSE 80
