@@ -36,7 +36,7 @@ pipeline {
 
                             docker pull nginx:alpine || true
 
-                            docker build -t ${IMAGE} .
+                            DOCKER_BUILDKIT=0 docker build -t ${IMAGE} .
 
                             docker push ${IMAGE}
                         """
