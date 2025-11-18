@@ -4,7 +4,6 @@
 .vscode
 README.md
 *.log
-*.pdf
 *.zip
 *.tar
 *.gz
