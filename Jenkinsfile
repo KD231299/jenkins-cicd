@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         EC2_SSH = 'ec2-ssh'
-        EC2_IP  = "98.82.140.10"
+        EC2_IP  = "3.226.242.21"
     }
 
     triggers {
